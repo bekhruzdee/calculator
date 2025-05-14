@@ -20,6 +20,14 @@ function clearDisplay() {
   display.value = "";
 }
 
+function percentage() {
+  try {
+    display.value = parseFloat(display.value) / 100;
+  } catch {
+    display.value = "Error";
+  }
+}
+
 document.addEventListener("keydown", function (e) {
   const key = e.key;
   const allowed = [

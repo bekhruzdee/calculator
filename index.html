@@ -28,10 +28,11 @@
             />
             <input
               type="button"
-              value="."
-              onclick="display.value += '.'"
+              value="%"
+              onclick="percentage()"
               class="operator"
             />
+
             <input
               type="button"
               value="/"
@@ -60,6 +61,7 @@
           <div>
             <input type="button" value="00" onclick="display.value += '00'" />
             <input type="button" value="0" onclick="display.value += '0'" />
+            <input type="button" value="." onclick="display.value += '.'" />
             <input
               type="button"
               value="="
