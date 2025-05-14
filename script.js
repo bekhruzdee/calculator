@@ -6,10 +6,23 @@ function appendToDisplay(value) {
 
 function calculate() {
   try {
-    display.value = eval(display.value);
+    const expr = display.value
+      .replace(/sin\(/g, "Math.sin(degToRad(")
+      .replace(/cos\(/g, "Math.cos(degToRad(")
+      .replace(/tan\(/g, "Math.tan(degToRad(")
+      .replace(/log\(/g, "Math.log10(")
+      .replace(/sqrt\(/g, "Math.sqrt(")
+      .replace(/abs\(/g, "Math.abs(")
+      .replace(/PI/g, "Math.PI")
+      .replace(/E/g, "Math.E");
+    display.value = eval(expr);
   } catch {
     display.value = "Error";
   }
+}
+
+function degToRad(deg) {
+  return (deg * Math.PI) / 180;
 }
 
 function deleteLast() {
@@ -28,29 +41,18 @@ function percentage() {
   }
 }
 
-document.addEventListener("keydown", function (e) {
-  const key = e.key;
-  const allowed = [
-    "0",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    ".",
-    "+",
-    "-",
-    "*",
-    "/",
-  ];
+function toggleAdvanced() {
+  const panel = document.getElementById("advancedPanel");
+  panel.classList.toggle("show");
+}
 
-  if (allowed.includes(key)) {
+document.addEventListener("keydown", (e) => {
+  const key = e.key;
+
+  if (!isNaN(key) || "+-*/().".includes(key)) {
     appendToDisplay(key);
   } else if (key === "Enter") {
+    e.preventDefault();
     calculate();
   } else if (key === "Backspace") {
     deleteLast();

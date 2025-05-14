@@ -9,21 +9,21 @@
   <body>
     <div class="container">
       <div class="calculator">
-        <form>
+        <form onsubmit="return false;">
           <div class="display">
-            <input type="text" name="display" />
+            <input type="text" name="display" readonly />
           </div>
           <div>
             <input
               type="button"
               value="AC"
-              onclick="display.value = ''"
+              onclick="clearDisplay()"
               class="operator"
             />
             <input
               type="button"
               value="DE"
-              onclick="display.value = display.value.toString().slice(0,-1)  "
+              onclick="deleteLast()"
               class="operator"
             />
             <input
@@ -32,42 +32,78 @@
               onclick="percentage()"
               class="operator"
             />
-
             <input
               type="button"
               value="/"
-              onclick="display.value += '/'"
+              onclick="appendToDisplay('/')"
               class="operator"
             />
           </div>
           <div>
-            <input type="button" value="7" onclick="display.value += '7'" />
-            <input type="button" value="8" onclick="display.value += '8'" />
-            <input type="button" value="9" onclick="display.value += '9'" />
-            <input type="button" value="*" onclick="display.value += '*'" />
+            <input type="button" value="7" onclick="appendToDisplay('7')" />
+            <input type="button" value="8" onclick="appendToDisplay('8')" />
+            <input type="button" value="9" onclick="appendToDisplay('9')" />
+            <input type="button" value="*" onclick="appendToDisplay('*')" />
           </div>
           <div>
-            <input type="button" value="4" onclick="display.value += '4'" />
-            <input type="button" value="5" onclick="display.value += '5'" />
-            <input type="button" value="6" onclick="display.value += '6'" />
-            <input type="button" value="-" onclick="display.value += '-'" />
+            <input type="button" value="4" onclick="appendToDisplay('4')" />
+            <input type="button" value="5" onclick="appendToDisplay('5')" />
+            <input type="button" value="6" onclick="appendToDisplay('6')" />
+            <input type="button" value="-" onclick="appendToDisplay('-')" />
           </div>
           <div>
-            <input type="button" value="1" onclick="display.value += '1'" />
-            <input type="button" value="2" onclick="display.value += '2'" />
-            <input type="button" value="3" onclick="display.value += '3'" />
-            <input type="button" value="+" onclick="display.value += '+'" />
+            <input type="button" value="1" onclick="appendToDisplay('1')" />
+            <input type="button" value="2" onclick="appendToDisplay('2')" />
+            <input type="button" value="3" onclick="appendToDisplay('3')" />
+            <input type="button" value="+" onclick="appendToDisplay('+')" />
           </div>
           <div>
-            <input type="button" value="00" onclick="display.value += '00'" />
-            <input type="button" value="0" onclick="display.value += '0'" />
-            <input type="button" value="." onclick="display.value += '.'" />
+            <input
+              type="button"
+              value="More"
+              onclick="toggleAdvanced()"
+              class="operator"
+            />
+            <input type="button" value="0" onclick="appendToDisplay('0')" />
+            <input type="button" value="." onclick="appendToDisplay('.')" />
             <input
               type="button"
               value="="
-              onclick="display.value = eval(display.value)"
+              onclick="calculate()"
               class="equal operator"
             />
+          </div>
+
+          <div class="advanced-panel" id="advancedPanel">
+            <input
+              type="button"
+              value="sin"
+              onclick="appendToDisplay('sin(')"
+            />
+            <input
+              type="button"
+              value="cos"
+              onclick="appendToDisplay('cos(')"
+            />
+            <input
+              type="button"
+              value="tan"
+              onclick="appendToDisplay('tan(')"
+            />
+            <input
+              type="button"
+              value="log"
+              onclick="appendToDisplay('log(')"
+            />
+            <input type="button" value="√" onclick="appendToDisplay('sqrt(')" />
+            <input
+              type="button"
+              value="abs"
+              onclick="appendToDisplay('abs(')"
+            />
+            <input type="button" value="π" onclick="appendToDisplay('PI')" />
+            <input type="button" value="e" onclick="appendToDisplay('E')" />
+            <input type="button" value=")" onclick="appendToDisplay(')')" />
           </div>
         </form>
       </div>
